@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Product Info Group",
+    "fields": [
+      {
+        "id": "productName",
+        "label": "Product Name",
+        "type": "plain",
+        "validations": [
+          {
+            "type": "length",
+            "minLength": 2,
+            "maxLength": 10
+          },
+          {
+            "type": "required"
+          }
+        ]
+      },
+      {
+        "id": "productDescription",
+        "label": "Product Description",
+        "type": "plain",
+        "validations": [
+          {
+            "type": "length",
+            "minLength": 2,
+            "maxLength": 20
+          }
+        ]
+      },
+      {
+        "id": "productType",
+        "label": "Product Type",
+        "type": "select",
+        "multiple": false,
+        "options": [
+          {
+            "label": "Display Label 1",
+            "value": "value1"
+          },
+          {
+            "label": "Display Label 2",
+            "value": 2
+          }
+        ],
+        "validations": [
+          {
+            "type": "required"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Product Details Group",
+    "fields": [
+      {
+        "id": "facility",
+        "label": "Facility",
+        "type": "select",
+        "multiple": false,
+        "options": [
+          {
+            "label": "None",
+            "value": ""
+          },
+          {
+            "label": "Facility A",
+            "value": "A1"
+          },
+          {
+            "label": "Facility B",
+            "value": "B2"
+          }
+        ]
+      }
+    ]
+  }
+]

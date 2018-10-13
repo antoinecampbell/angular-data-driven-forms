@@ -1,0 +1,15 @@
+<div *ngFor="let validation of field?.validations">
+  <ng-container [ngSwitch]="validation.type">
+    <ng-container *ngSwitchCase="'required'">
+      <mat-error *ngIf="control?.touched && control?.hasError('required')">Required</mat-error>
+    </ng-container>
+    <ng-container *ngSwitchCase="'length'">
+      <mat-error *ngIf="control?.touched && control?.hasError('minlength')">
+        Length must be {{validation.minLength}} or more
+      </mat-error>
+      <mat-error *ngIf="control?.touched && control?.hasError('maxlength')">
+        Length must be {{validation.maxLength}} or less
+      </mat-error>
+    </ng-container>
+  </ng-container>
+</div>

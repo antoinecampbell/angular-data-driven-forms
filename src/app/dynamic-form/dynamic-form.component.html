@@ -1,0 +1,37 @@
+<form *ngIf="form" [formGroup]="form" (submit)="onSubmit()">
+  <ng-container *ngFor="let group of config">
+    <mat-card class="group">
+      <mat-card-title>{{group.name}}</mat-card-title>
+      <mat-card-content>
+        <ng-container *ngFor="let field of group.fields">
+          <ng-container [ngSwitch]="field.type">
+
+            <div *ngSwitchCase="'plain'">
+              <mat-form-field>
+                <input matInput type="text" [placeholder]="field.label" [formControlName]="field.id" autocomplete="off">
+              </mat-form-field>
+              <div [app-dynamic-form-error]="field" [control]="form.controls[field.id]"></div>
+            </div>
+
+            <div *ngSwitchCase="'select'">
+              <mat-form-field>
+                <mat-select [placeholder]="field.label" [formControlName]="field.id">
+                  <mat-option *ngFor="let option of field.options" [value]="option.value">
+                    {{option.label}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div [app-dynamic-form-error]="field" [control]="form.controls[field.id]"></div>
+            </div>
+
+          </ng-container>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submit</button>
+  <button mat-raised-button type="button" color="primary" (click)="onLoadForm()">Load Form</button>
+  <button mat-button type="button" color="warn" (click)="onReset()">Reset</button>
+  <br/>
+  <pre>{{form.value | json}}</pre>
+</form>
